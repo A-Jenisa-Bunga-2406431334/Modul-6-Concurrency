@@ -42,3 +42,17 @@ HTTP response terdiri dari tiga bagian:
 Browser dapat merender halaman karena response sudah sesuai format protokol HTTP.
 
 ![Commit 2 screen capture](/assets/images/commit2.png)
+
+## Commit 3 Reflection Notes
+
+### Validating request and selectively responding
+
+Pada milestone ini, server sudah bisa membedakan request dan memberikan response yang sesuai.
+Server membaca request line pertama dari HTTP request untuk mengetahui path yang diminta.
+Jika path adalah `GET / HTTP/1.1`, server mengembalikan `hello.html` dengan status `200 OK`.
+Jika path lain, server mengembalikan `404.html` dengan status `404 NOT FOUND`.
+Refactoring dilakukan dengan menggunakan tuple `(status_line, filename)` agar tidak ada
+duplikasi kode dalam membentuk response.
+
+![Commit 3 screen capture](assets/images/commit3.png)
+
