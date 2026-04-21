@@ -27,3 +27,18 @@ Dari output yang saya terima, browser mengirimkan informasi seperti:
 Request muncul beberapa kali karena browser otomatis me-retry ketika tidak mendapat 
 response dari server.
 
+## Commit 2 Reflection Notes
+
+### Returning HTML
+
+Pada milestone ini, handle_connection dimodifikasi untuk mengirim HTTP response berisi file HTML.
+`fs::read_to_string` digunakan untuk membaca isi file hello.html menjadi String.
+HTTP response terdiri dari tiga bagian:
+- Status line: `HTTP/1.1 200 OK`
+- Header `Content-Length` yang berisi panjang konten HTML
+- Blank line sebagai pemisah header dan body
+- Body berisi isi HTML
+
+Browser dapat merender halaman karena response sudah sesuai format protokol HTTP.
+
+![Commit 2 screen capture](/assets/images/commit2.png)
