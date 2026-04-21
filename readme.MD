@@ -56,3 +56,12 @@ duplikasi kode dalam membentuk response.
 
 ![Commit 3 screen capture](assets/images/commit3.png)
 
+## Commit 4 Reflection Notes
+
+### Simulation of slow request
+
+Ketika mengakses `/sleep`, server akan tidur selama 10 detik sebelum merespons.
+Karena server berjalan secara single-threaded, request lain (seperti `/`) harus
+menunggu sampai request `/sleep` selesai diproses.
+Ini menunjukkan kelemahan single-threaded server: satu request lambat bisa
+memblokir semua request lainnya.
