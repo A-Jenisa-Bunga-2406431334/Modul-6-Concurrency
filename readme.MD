@@ -65,3 +65,14 @@ Karena server berjalan secara single-threaded, request lain (seperti `/`) harus
 menunggu sampai request `/sleep` selesai diproses.
 Ini menunjukkan kelemahan single-threaded server: satu request lambat bisa
 memblokir semua request lainnya.
+
+## Commit 5 Reflection Notes
+
+### Multithreaded server using Threadpool
+
+ThreadPool dibuat untuk mengelola sejumlah worker thread yang siap menerima job.
+`mpsc::channel` digunakan untuk mengirim job dari main thread ke worker thread.
+`Arc<Mutex<>>` digunakan agar receiver bisa di-share secara aman antar banyak worker.
+Setiap Worker menjalankan loop yang terus menunggu job dari channel dan mengeksekusinya.
+Dengan 4 worker thread, server sekarang bisa menangani beberapa request secara bersamaan,
+sehingga `/sleep` tidak memblokir request lain seperti `/`.
