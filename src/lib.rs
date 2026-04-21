@@ -25,6 +25,14 @@ impl ThreadPool {
         ThreadPool { workers, sender }
     }
 
+    pub fn build(size: usize) -> Result<ThreadPool, String> {
+        if size > 0 {
+            Ok(ThreadPool::new(size))
+        } else {
+            Err(String::from("Thread pool size must be greater than zero!"))
+        }
+    }
+
     pub fn execute<F>(&self, f: F)
     where
         F: FnOnce() + Send + 'static,

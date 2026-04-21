@@ -76,3 +76,13 @@ ThreadPool dibuat untuk mengelola sejumlah worker thread yang siap menerima job.
 Setiap Worker menjalankan loop yang terus menunggu job dari channel dan mengeksekusinya.
 Dengan 4 worker thread, server sekarang bisa menangani beberapa request secara bersamaan,
 sehingga `/sleep` tidak memblokir request lain seperti `/`.
+
+## Commit Bonus Reflection Notes
+
+### Function improvement
+
+Fungsi `build` dibuat sebagai alternatif yang lebih aman dari `new`.
+`new` menggunakan `assert!` yang langsung panic jika size = 0.
+`build` mengembalikan `Result` sehingga caller bisa menangani error dengan lebih graceful
+tanpa menyebabkan program crash secara tiba-tiba.
+Ini adalah praktik yang lebih baik dalam Rust untuk fungsi yang bisa gagal.
